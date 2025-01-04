@@ -1,46 +1,47 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  ElementType,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-} from 'react'
+import { ComponentProps } from 'react'
 
-import { clsx } from 'clsx'
+import { cva, VariantProps } from 'class-variance-authority'
+import { Slot } from '@radix-ui/react-slot'
+import {cn} from "../../../lib/utils.ts";
 
-import s from './button.module.scss'
+export const buttonVariants = cva(
+    ['rounded-md inline-flex px-3 py-2 text-slate-50'],
+    {
+      variants: {
+        variant: {
+          primary: [
+            'bg-accent-500',
+            'hover:bg-accent-100',
+            'active:bg-accent-700',
+          ],
+          secondary: ['bg-dark-300', 'hover:bg-dark-100', 'active:bg-[#212121]'],
+        },
+      },
+      defaultVariants: {
+        variant: 'primary',
+      },
+    }
+)
 
-export type ButtonProps<T extends ElementType = 'button'> = {
-  as?: T
-  children: ReactNode
-  className?: string
-  fullWidth?: boolean
-  variant?: 'icon' | 'link' | 'primary' | 'secondary' | 'tertiary'
-} & ComponentPropsWithoutRef<T>
+export type ButtonProps = VariantProps<typeof buttonVariants> &
+    ComponentProps<'button'> & {
+  asChild?: boolean
+}
 
-const ButtonPolymorph = <T extends ElementType = 'button'>(props: ButtonProps<T>, ref: any) => {
-  const {
-    as: Component = 'button',
-    className,
-    fullWidth,
-    rounded,
-    variant = 'primary',
-    ...rest
-  } = props
+function Button({
+                  variant = 'primary',
+                  className,
+                  asChild,
+                  ...props
+                }: ButtonProps) {
+  const Component = asChild ? Slot : 'button'
 
   return (
-    <Component
-      className={clsx(s[variant], fullWidth && s.fullWidth, className)}
-      {...rest}
-      ref={ref}
-    />
+      <Component
+          className={cn(buttonVariants({ variant }), className)}
+          {...props}
+      />
   )
 }
 
-export const Button = forwardRef(ButtonPolymorph) as <T extends ElementType = 'button'>(
-  props: {
-    ref?: ForwardedRef<ElementRef<T>>
-  } & ButtonProps<T> &
-    Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
-) => ReturnType<typeof ButtonPolymorph>
+export { Button }
