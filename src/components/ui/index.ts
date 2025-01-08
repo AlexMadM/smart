@@ -1,9 +1,8 @@
-export * from '../layout/header'
 export * from './avatar'
 export * from './button'
 export * from './card'
 export * from './checkbox'
-export * from './controlled'
+
 export * from './dialog'
 export * from './dropdown'
 export * from './modal'

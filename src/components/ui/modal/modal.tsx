@@ -1,10 +1,10 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import { Close } from '@/assets'
-import { Typography } from '@/components'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import s from './modal.module.scss'
+import { Close } from '../../../assets/icons'
+import { Typography } from '../typography'
 
 export type ModalProps = {
   children: ReactNode

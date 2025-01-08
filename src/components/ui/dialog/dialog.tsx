@@ -1,6 +1,6 @@
-import { Button, Modal, ModalProps } from '@/components'
-
 import s from './dialog.module.scss'
+import { Modal, ModalProps } from '../modal'
+import { Button } from '../button'
 
 export type DialogProps = {
   cancelText?: string
