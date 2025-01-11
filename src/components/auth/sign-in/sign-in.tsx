@@ -1,8 +1,18 @@
 import { Button, Card, Typography } from '../../ui'
 import { Input } from '../../ui/text-field/input.tsx'
-import { CheckboxWithText } from '../../ui/checkbox/checkbox-withText.tsx'
-
+import { FormCheckbox } from '../../ui/form/form-checkbox.tsx'
+import { z } from 'zod'
 const SignIn = () => {
+  const loginSchema = z.object({
+    email: z.string().min(1, 'Required').email('Неверный адрес электронной почты'),
+    password: z
+      .string({ required_error: 'Required' })
+      .min(1, 'Required')
+      .min(3, 'Минимум 3 символа'),
+  })
+
+  type LoginFields = z.infer<typeof loginSchema>
+
   return (
     <Card className="bg-dark-700 rounded-sm w-[420px] flex items-center justify-center">
       <div className="w-[350px] flex flex-col items-center self-center ">
@@ -16,7 +26,7 @@ const SignIn = () => {
           type="password"
           placeholder="Enter your password"
         />
-        <CheckboxWithText />
+        <FormCheckbox />
         <Typography className=" mb-[66px] text-[14px] font-normal leading-[24px] tracking-normal text-center self-end text-light-100">
           Forgot Password?
         </Typography>
