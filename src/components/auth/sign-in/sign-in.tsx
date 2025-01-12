@@ -1,30 +1,84 @@
+import { useForm } from 'react-hook-form'
 import { Button, Card, Typography } from '../../ui'
 import { Input } from '../../ui/text-field/input.tsx'
-import { CheckboxWithText } from '../../ui/checkbox/checkbox-withText.tsx'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { FormCheckbox } from '../../ui/form/form-checkbox.tsx'
+import { Link } from 'lucide-react'
+
+const loginSchema = z.object({
+  email: z.string().min(1, 'Required').email('Неверный адрес электронной почты'),
+  password: z.string({ required_error: 'Required' }).min(1, 'Required').min(3, 'Минимум 3 символа'),
+  rememberMe: z.boolean().optional(),
+})
+
+type LoginFields = z.infer<typeof loginSchema>
 
 const SignIn = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    control,
+  } = useForm<LoginFields>({
+    resolver: zodResolver(loginSchema),
+  })
+
+  const onSubmit = handleSubmit(data => {
+    // logIn(data)
+    //     .unwrap()
+    //     .then((data) => {
+    //       localStorage.setItem('access_token', data.accessToken)
+    //       const payload = data.accessToken.split('.')[1]
+    //       const id = JSON.parse(atob(payload)).userId
+    //       router.push(`/profile/${id}`)
+    //     })
+  })
+
   return (
     <Card className="bg-dark-700 rounded-sm w-[420px] flex items-center justify-center">
-      <div className="w-[350px] flex flex-col items-center self-center ">
-        <Typography className="text-center mb-6 mt-8 text-2xl font-bold text-light-500">
-          Sign In
-        </Typography>
-        <Input className={'mb-6'} label="Email" type="email" placeholder="Enter your email" />
-        <Input
-          className={'mb-3'}
-          label="Password"
-          type="password"
-          placeholder="Enter your password"
-        />
-        <CheckboxWithText />
-        <Typography className=" mb-[66px] text-[14px] font-normal leading-[24px] tracking-normal text-center self-end text-light-100">
-          Forgot Password?
-        </Typography>
-        <Button className="flex justify-center mb-[20px] w-full items-center">Sign In</Button>
-        <Typography className=" mb-[66px] text-[14px] font-normal leading-[24px] tracking-normal text-center self-center text-light-900">
-          Don't have an account?
-        </Typography>
-      </div>
+      <form onSubmit={onSubmit}>
+        {' '}
+        <div className="w-[350px] flex flex-col items-center self-center ">
+          <Typography className="text-center mb-6 mt-8 text-2xl font-bold text-light-500">
+            Sign In
+          </Typography>
+          <Input
+            className={'mb-6'}
+            placeholder="Email"
+            label={'Email'}
+            errorMessage={errors.email?.message}
+            {...register('email')}
+          />
+          <Input
+            className={'mb-3'}
+            placeholder="Password"
+            label={'Password'}
+            errorMessage={errors.password?.message}
+            type={'password'}
+            {...register('password')}
+          />
+
+          <FormCheckbox
+            className={'mr-3 text-light-100 self-start'}
+            label={'rememberMe'}
+            control={control}
+            name={'rememberMe'}
+          />
+
+          <Typography className=" mb-[66px] text-[14px] font-normal leading-[24px] tracking-normal text-center self-end text-light-100">
+            Forgot Password?
+          </Typography>
+          <Button className="flex justify-center mb-[20px] w-full items-center">Sign In</Button>
+          <Typography className=" mb-[66px] text-[14px] font-normal leading-[24px] tracking-normal text-center self-center text-light-900">
+            Don't have an account?
+          </Typography>
+          <Typography as={Link} className={''} to={'/sign-up'} variant={'link1'}>
+            Sign Up
+          </Typography>
+        </div>
+      </form>
     </Card>
   )
 }

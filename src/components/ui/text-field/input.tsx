@@ -76,7 +76,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {isTypeSearch && <SearchIcon />}
         </div>
 
-        <div className="absolute top-2 right-3 flex h-full justify-center items-center ">
+        <div className="absolute  top-1 right-3 flex h-full justify-center items-center ">
           {' '}
           <Icon
             clear={onClearHandler}
