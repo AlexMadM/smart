@@ -1,11 +1,11 @@
 import { ComponentPropsWithoutRef, FC } from 'react'
 
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@/assets'
 import { clsx } from 'clsx'
 
 import s from './pagination.module.scss'
 
 import { usePagination } from './usePagination'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '../../../assets/icons'
 
 type PaginationConditionals =
   | {
