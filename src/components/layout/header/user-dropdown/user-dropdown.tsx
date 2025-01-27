@@ -14,22 +14,22 @@ import {
 import PersonOutline from '../../../../assets/icons/components/PersonOutline.tsx'
 
 export type UserDropdownProps = {
-  avatar: null | string
-  email: string
-  onLogout: () => void
-  userName: string
+  avatar?: null | string
+  email?: string
+  onLogout?: () => void
+  userName?: string
 }
 
 export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdownProps) => {
   if (!avatar) {
-    avatar = `https://ui-avatars.com/api/?name=${userName.split(' ').join('+')}`
+    avatar = `https://ui-avatars.com/api/?name=${userName?.split(' ').join('+')}`
   }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={''}>
-          <Typography className={''} variant={'subtitle1'}>
+          <Typography className={'text-white'} variant={'subtitle1'}>
             {userName}
           </Typography>
           <Avatar src={avatar} />
@@ -40,7 +40,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
           <Avatar src={avatar} />
           <div>
             <Typography variant={'subtitle2'}>{userName}</Typography>
-            <Typography className={''} variant={'caption'}>
+            <Typography className={'text-white'} variant={'caption'}>
               {email}
             </Typography>
           </div>

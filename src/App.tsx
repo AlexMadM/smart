@@ -1,13 +1,20 @@
 import './index.css'
 
-import { SignUp } from './components/auth/sign-up/sign-up.tsx'
-import Header from './components/layout/header/header.tsx'
+import { Router } from './components/router.tsx'
+
+import { LayoutPrimitive } from './components/layout.tsx'
+import QueryProvider from './components/query-provider.tsx'
+import { BrowserRouter } from 'react-router'
 
 function App() {
   return (
     <div className="flex flex-col items-center  h-screen bg-dark-900">
-      <Header isLoggedIn={false} />
-      <SignUp />
+      <QueryProvider>
+        <BrowserRouter>
+          <LayoutPrimitive />
+          <Router />
+        </BrowserRouter>
+      </QueryProvider>
     </div>
   )
 }

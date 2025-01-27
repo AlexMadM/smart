@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type AxiosRequestConfig } from 'axios'
 
 export const apiInstance = axios.create({
-  baseURL: 'https://inctagram.work/api',
+  baseURL: 'https://api.flashcards.andrii.es',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -17,14 +17,14 @@ apiInstance.interceptors.request.use(config => {
   return config
 })
 
-// // Response interceptor
+//  Response interceptor
 // apiInstance.interceptors.response.use(
 //   response => response,
 //   async (error: AxiosError) => {
 //     if (error.response?.status === 401) {
 //       try {
 //         const response = await axios.post(
-//           'https://inctagram.work/api/v1/auth/update-tokens',
+//           'https://api.flashcards.andrii.es/v2/auth/refresh-token',
 //           {},
 //           { withCredentials: true }
 //         )

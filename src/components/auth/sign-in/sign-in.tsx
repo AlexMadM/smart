@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { FormCheckbox } from '../../ui/form/form-checkbox.tsx'
 import { Link } from 'lucide-react'
+import { useSignInForm } from '../../../services/auth/auth-hooks.ts'
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Required').email('Неверный адрес электронной почты'),
@@ -16,29 +17,15 @@ const loginSchema = z.object({
 type LoginFields = z.infer<typeof loginSchema>
 
 const SignIn = () => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    control,
-  } = useForm<LoginFields>({
+  const { control } = useForm<LoginFields>({
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = handleSubmit(data => {
-    // logIn(data)
-    //     .unwrap()
-    //     .then((data) => {
-    //       localStorage.setItem('access_token', data.accessToken)
-    //       const payload = data.accessToken.split('.')[1]
-    //       const id = JSON.parse(atob(payload)).userId
-    //       router.push(`/profile/${id}`)
-    //     })
-  })
+  const { handleSubmit, register, errorMessage } = useSignInForm()
 
   return (
     <Card className="bg-dark-700 rounded-sm w-[420px] flex items-center justify-center">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         {' '}
         <div className="w-[350px] flex flex-col items-center self-center ">
           <Typography className="text-center mb-6 mt-8 text-2xl font-bold text-light-500">
@@ -48,14 +35,14 @@ const SignIn = () => {
             className={'mb-6'}
             placeholder="Email"
             label={'Email'}
-            errorMessage={errors.email?.message}
+            errorMessage={''}
             {...register('email')}
           />
           <Input
             className={'mb-3'}
             placeholder="Password"
             label={'Password'}
-            errorMessage={errors.password?.message}
+            errorMessage={''}
             type={'password'}
             {...register('password')}
           />
