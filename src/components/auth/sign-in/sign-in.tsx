@@ -21,10 +21,10 @@ const SignIn = () => {
     resolver: zodResolver(loginSchema),
   })
 
-  const { handleSubmit, register, errorMessage } = useSignInForm()
+  const { handleSubmit, register } = useSignInForm()
 
   return (
-    <Card className="bg-dark-700 rounded-sm w-[420px] flex items-center justify-center">
+    <Card className="bg-dark-700  text-white rounded-sm w-[420px] flex items-center justify-center">
       <form onSubmit={handleSubmit}>
         {' '}
         <div className="w-[350px] flex flex-col items-center self-center ">
@@ -32,14 +32,14 @@ const SignIn = () => {
             Sign In
           </Typography>
           <Input
-            className={'mb-6'}
+            className={'mb-6 text-light-100'}
             placeholder="Email"
             label={'Email'}
             errorMessage={''}
             {...register('email')}
           />
           <Input
-            className={'mb-3'}
+            className={'mb-3  text-light-100'}
             placeholder="Password"
             label={'Password'}
             errorMessage={''}

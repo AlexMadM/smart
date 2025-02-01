@@ -23,7 +23,7 @@ export const FormCheckbox = <T extends FieldValues>({
 
   return (
     <Checkbox
-      className={'border border-light-100'}
+      className={'border text-white border-light-100'}
       {...props}
       onCheckedChange={onChange}
       checked={value}

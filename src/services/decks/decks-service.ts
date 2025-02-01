@@ -1,4 +1,5 @@
 import { createInstance } from '../../axios/axios-instans.ts'
+import { getValuable } from '../../utils'
 
 type SecondParameter<T extends (...args: any) => any> = T extends (
   config: any,
@@ -40,17 +41,24 @@ export type Deck = {
   userId: string
 }
 
-export const getAllDecks = (
-  queryParams: string,
-  options?: SecondParameter<typeof createInstance>
-) => {
-  return createInstance<DecksResponse>({ url: `/v2/decks`, method: 'get' }, options)
+export type GetDecksArgs = {
+  authorId?: null | string
+  currentPage?: null | number
+  favoritedBy?: null | string
+  itemsPerPage?: null | number
+  maxCardsCount?: null | number
+  minCardsCount?: null | number
+  name?: null | string
+  orderBy?: null | string
 }
 
-
-
-
-type GetDecksArgs = {
-  [key: string]: any; // Укажите точные типы для аргументов, если они известны
-};
-
+export const getDecks = (args?: GetDecksArgs, options?: SecondParameter<typeof createInstance>) => {
+  return createInstance<DecksResponse>(
+    {
+      url: '/v1/decks',
+      method: 'get',
+      params: args ? getValuable(args) : undefined,
+    },
+    options
+  )
+}

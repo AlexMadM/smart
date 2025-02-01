@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router'
 
 function App() {
   return (
-    <div className="flex flex-col items-center  h-screen bg-dark-900">
+    <div className="flex flex-col items-center text-white h-screen bg-dark-900">
       <QueryProvider>
         <BrowserRouter>
           <LayoutPrimitive />

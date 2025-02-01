@@ -65,7 +65,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={isViewPassword && isTypePassword ? 'text' : type}
           name={name}
           className={cn(
-            'bg-inherit flex h-9 w-full  rounded-md border py-1.5 px-3 border-dark-100 text-light-900 ',
+            'bg-inherit flex h-9 w-full  rounded-md border py-1.5 px-3 border-dark-100 text-light-100',
             className,
             errorMessage && 'border-danger-500'
           )}

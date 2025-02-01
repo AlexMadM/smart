@@ -9,13 +9,13 @@ export const apiInstance = axios.create({
 })
 
 // Request interceptor
-apiInstance.interceptors.request.use(config => {
-  const token = localStorage.getItem('accessToken')
-  if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
-  return config
-})
+// apiInstance.interceptors.request.use(config => {
+//   const token = localStorage.getItem('accessToken')
+//   if (token && config.headers) {
+//     config.headers.Authorization = `Bearer ${token}`
+//   }
+//   return config
+// })
 
 //  Response interceptor
 // apiInstance.interceptors.response.use(
