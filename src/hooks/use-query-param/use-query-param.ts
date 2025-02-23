@@ -1,5 +1,4 @@
-import { isNil } from 'remeda'
-
+export const isNil = (value: any): boolean => value == null
 export function useQueryParam<T extends boolean | number | string>(
   searchParams: URLSearchParams,
   setSearchParams: (searchParams: URLSearchParams) => void,

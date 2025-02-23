@@ -62,6 +62,9 @@ importers:
       react-router-dom:
         specifier: ^7.1.1
         version: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      remeda:
+        specifier: ^2.20.2
+        version: 2.20.2
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -2461,6 +2464,9 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
+  remeda@2.20.2:
+    resolution: {integrity: sha512-38pfm5aUq6mUkNYbt7TdY2WEk9mSqRVV+6UsoTjabwmbu8obLbh8sYYSX2WQ3W4u6EYp3XxUKqIiwGFZu+OY9g==}
+
   require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
@@ -2773,6 +2779,10 @@ packages:
   type-fest@2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+
+  type-fest@4.35.0:
+    resolution: {integrity: sha512-2/AwEFQDFEy30iOLjrvHDIH7e4HEWH+f1Yl1bI5XMqzuoCUqwYCdxachgsgv0og/JdVZUhbfjcJAoHj5L1753A==}
+    engines: {node: '>=16'}
 
   typed-array-buffer@1.0.3:
     resolution: {integrity: sha512-nAYYwfY3qnzX30IkA6AQZjVbtK6duGontcQm1WSG1MD94YLqK0515GNApXkoxKOWMusVssAHWLh9SeaoefYFGw==}
@@ -5232,6 +5242,10 @@ snapshots:
       gopd: 1.2.0
       set-function-name: 2.0.2
 
+  remeda@2.20.2:
+    dependencies:
+      type-fest: 4.35.0
+
   require-from-string@2.0.2: {}
 
   resolve-from@4.0.0: {}
@@ -5662,6 +5676,8 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-fest@2.19.0: {}
+
+  type-fest@4.35.0: {}
 
   typed-array-buffer@1.0.3:
     dependencies:
