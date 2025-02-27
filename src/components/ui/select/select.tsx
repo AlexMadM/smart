@@ -4,6 +4,7 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
 
 import s from './select.module.scss'
+import { SelectArrowDown } from '../../../assets/icons/components/select-arrow-down.tsx'
 
 export type SelectProps = {
   className?: string
